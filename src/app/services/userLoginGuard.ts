@@ -8,13 +8,10 @@ export class IfUserLogin implements CanActivate {
     private router: Router, private route: ActivatedRoute) {}
 
 
-  canActivate(
-  ): boolean{
-      if (this.authService.user) {
-        return true
-      }
-      this.router.navigate(['login'], { relativeTo: this.route });
-      return false;
+  async canActivate(
+  ): Promise<boolean>{
+     const result = await this.authService.isUserLoggedIn()
+     return result; 
    
   }
 }

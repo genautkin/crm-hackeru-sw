@@ -16,10 +16,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  
+    
   }
 
   login(){
-    console.log(this.form)
     this.auth.loginWithEmailPassword(this.form.email,this.form.password)
 
   }
