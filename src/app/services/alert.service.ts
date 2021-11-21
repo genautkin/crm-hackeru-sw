@@ -15,4 +15,12 @@ export class AlertService {
       text: message
     })
   }
+
+  done(message:string,milliseconds = 2000) {
+    Swal.fire({
+      icon: 'success',
+      title: message,
+      timer: 2000,
+      timerProgressBar: true})
+  }
 }

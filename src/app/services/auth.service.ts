@@ -34,6 +34,7 @@ export class AuthService {
     return new Promise((resolve, reject)=>{
       if (this.user) {
         resolve(true);
+        
       }
       this.auth.authState.subscribe(res => {
         if (res && res.uid) {
