@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/modules/user.module';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { SpinnerService } from 'src/app/services/spiner.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { SpinnerService } from 'src/app/services/spiner.service';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private afs: AngularFirestore,private spinnerService: SpinnerService, private alertService: AlertService) { }
+  constructor(private afs: AngularFirestore,private spinnerService: SpinnerService, private alertService: AlertService,
+    private userService:AuthService) { }
 
   user?:User
 
@@ -66,7 +68,8 @@ catch (err:any) {
     var user = {
       firstName: 'Gena',
       lastName: 'Gena2',
-      address: 'test'
+      address: 'test',
+      createByUserId: this.userService.getUserUid()
     }
        this.afs.collection("users").doc(docID).set(user).then((res)=>{
       console.log(res)

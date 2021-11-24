@@ -51,5 +51,7 @@ export class AuthService {
     this.auth.signOut();
   }
 
-  
+  getUserUid():string {
+    return this.user.uid
+  }
 }
