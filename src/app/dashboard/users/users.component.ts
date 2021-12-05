@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from 'src/app/modules/user.module';
+import { Customer } from 'src/app/modules/customer.module';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SpinnerService } from 'src/app/services/spiner.service';
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   constructor(private afs: AngularFirestore,private spinnerService: SpinnerService, private alertService: AlertService,
     private userService:AuthService) { }
 
-  user?:User
+  user?:Customer
 
 
   ngOnInit(): void {

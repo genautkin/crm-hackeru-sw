@@ -20,7 +20,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Phone number</label>
-            <input type="tel" class="form-control" id="inputPassword4" placeholder="Phone number" name="phoneNumber" ngModel required>
+            <input type="tel" class="form-control" id="inputPassword4" placeholder="Phone number" name="phone" ngModel required>
           </div>
         </div>
         <div class="form-group">
@@ -37,5 +37,8 @@
         <button 
         [disabled]="f.form.invalid"
          type="submit" class="btn btn-primary">Save</button>
+         <button 
+          (click)="clearForm()"
+         type="button" class="mx-2 btn btn-secondary">Clear</button>
       </form>
     </div>

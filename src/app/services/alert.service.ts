@@ -23,4 +23,15 @@ export class AlertService {
       timer: 2000,
       timerProgressBar: true})
   }
+
+  question(title:string,confirmButtonText:string,denyButtonText:string,showCancelButton:boolean) {
+    return Swal.fire({
+      title: title,
+      showDenyButton: true,
+      showCancelButton: showCancelButton,
+      confirmButtonText: confirmButtonText,
+      denyButtonText: denyButtonText,
+      focusDeny: true
+    })
+  }
 }

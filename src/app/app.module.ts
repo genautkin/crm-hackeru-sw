@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UsersComponent } from './dashboard/users/users.component';
 import { CustomersComponent } from './dashboard/customers/customers.component';
+import { ShowCustomersComponent } from './dashboard/show-customers/show-customers.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CustomersComponent } from './dashboard/customers/customers.component';
     DashboardComponent,
     SpinnerComponent,
     UsersComponent,
-    CustomersComponent
+    CustomersComponent,
+    ShowCustomersComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
