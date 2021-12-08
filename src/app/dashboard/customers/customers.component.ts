@@ -26,6 +26,7 @@ export class CustomersComponent implements OnInit {
   onSubmit(form:NgForm){
     const customerForm = form.form.value;
     customerForm.id = this.customerId;
+    customerForm.status = true;
     const customer = this.helper.objToCustomer(form.form.value)
     this.spinnerService.setStatus(true);
     this.helper.saveCustomer(customer.customerToObj()).then(()=>{

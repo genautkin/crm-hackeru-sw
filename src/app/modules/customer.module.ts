@@ -5,8 +5,9 @@ export class Customer {
     email: string;
     phone: string;
     address:string;
-    notes: string
-    constructor(id: string, firstName: string, lastName:string, email: string,phone: string, address:string, notes: string) {
+    notes: string;
+    status: boolean;
+    constructor(id: string, firstName: string, lastName:string, email: string,phone: string, address:string, notes: string, status: boolean) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -14,9 +15,10 @@ export class Customer {
         this.phone = phone;
         this.address = address;
         this.notes = notes;
+        this.status = status;
     }
 
     customerToObj () {
-        return {id:this.id, firstName: this.firstName, lastName: this.lastName, email: this.email, phone:this.phone, address: this.address, notes: this.notes}
+        return {id:this.id, firstName: this.firstName, lastName: this.lastName, email: this.email, phone:this.phone, address: this.address, notes: this.notes, status:this.status};
     }
 }

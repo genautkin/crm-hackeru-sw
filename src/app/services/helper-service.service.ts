@@ -10,7 +10,7 @@ export class HelperServiceService {
   constructor(private afs: AngularFirestore) { }
 
   public objToCustomer(obj:any) {
-    return new Customer(obj.id ,obj.firstName, obj.lastName, obj.email, obj.phone, obj.address, obj.notes)
+    return new Customer(obj.id ,obj.firstName, obj.lastName, obj.email, obj.phone, obj.address, obj.notes, obj.status)
 }
 
 saveCustomer(customerObj:any) {
@@ -21,13 +21,18 @@ createDocId() {
   return this.afs.createId();
 }
 
-getAllCustomers() {
-    return this.afs.firestore.collection("customers").get()
+getAllCustomers(status:boolean) {
+    return this.afs.firestore.collection("customers").where("status","==",status)
 
 }
 
 removeCustomer(id:string) {
   return this.afs.collection("customers").doc(id).delete()
 }
+
+changeStatusCustomer(id:string,status:boolean) {
+  return this.afs.collection("customers").doc(id).set({status: status},{merge: true})
+}
+
   
 }
