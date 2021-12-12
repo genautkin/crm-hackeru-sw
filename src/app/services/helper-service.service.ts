@@ -26,6 +26,10 @@ getAllCustomers(status:boolean) {
 
 }
 
+getCustomerById(id:string) {
+  return this.afs.firestore.collection("customers").where("id","==",id).get()
+}
+
 removeCustomer(id:string) {
   return this.afs.collection("customers").doc(id).delete()
 }
@@ -34,5 +38,27 @@ changeStatusCustomer(id:string,status:boolean) {
   return this.afs.collection("customers").doc(id).set({status: status},{merge: true})
 }
 
-  
+searchInCustomersArray(customersArray:Customer[],searchValue:string) {
+
+          var searchValue =  searchValue.toLowerCase();
+          // var searchFunction = function (customer: Customer) {
+          //     return customer.address.toLowerCase().includes(searchValue) ||
+          //           customer.phone.toLowerCase().includes(searchValue) || 
+          //           customer.email.toLowerCase().includes(searchValue) || 
+          //           customer.notes.toLowerCase().includes(searchValue) ||
+          //           customer.firstName.toLowerCase().includes(searchValue) ||
+          //           customer.lastName.toLowerCase().includes(searchValue)
+          // }
+
+          return customersArray.filter((customer: Customer) => {
+            return customer.address.toLowerCase().includes(searchValue) ||
+                  customer.phone.toLowerCase().includes(searchValue) || 
+                  customer.email.toLowerCase().includes(searchValue) || 
+                  customer.notes.toLowerCase().includes(searchValue) ||
+                  customer.firstName.toLowerCase().includes(searchValue) ||
+                  customer.lastName.toLowerCase().includes(searchValue)
+        });
+
+}  
+
 }

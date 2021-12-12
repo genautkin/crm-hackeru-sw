@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Customer } from 'src/app/modules/customer.module';
 import { AlertService } from 'src/app/services/alert.service';
 import { HelperServiceService } from 'src/app/services/helper-service.service';
@@ -11,23 +12,26 @@ import { SpinnerService } from 'src/app/services/spiner.service';
 })
 export class ShowCustomersComponent implements OnInit,OnDestroy {
 
-  constructor(private helper:HelperServiceService, private spinnerService: SpinnerService, private alertService: AlertService) { }
+  constructor(private helper:HelperServiceService, private spinnerService: SpinnerService, private alertService: AlertService,private deviceService: DeviceDetectorService) { }
+  //TODO change it to css
+  isMobile = this.deviceService.isMobile();
 
   customers: Customer[] = [];
+  customersFromDb: Customer[] = [];
   snapshot:any = null;
   ngOnInit(): void {
      this. getAllCustomers(true);
   }
 
   getAllCustomers(status:boolean) {
-    this.customers = [];
     this.spinnerService.setStatus(true);
     this.snapshot = this.helper.getAllCustomers(status).onSnapshot((querySnapshot) => {
       this.spinnerService.setStatus(false);
-      this.customers = [];
+      this.customersFromDb = [];
       querySnapshot.forEach((doc) => {
-           this.customers.push(this.helper.objToCustomer(doc.data()))
+           this.customersFromDb.push(this.helper.objToCustomer(doc.data()))
       })
+      this.customers = [...this.customersFromDb];
     })
   }
 
@@ -53,7 +57,9 @@ export class ShowCustomersComponent implements OnInit,OnDestroy {
   }
 
   
-  
+  searchChange(event: any) {
+    this.customers =  this.helper.searchInCustomersArray(this.customersFromDb,event.target.value);
+  }
   // remove(id: string) {
   //   this.alertService.question("Are you sure you want to remove?",'Yes','No',false).then((result) => {
   //     /* Read more about isConfirmed, isDenied below */

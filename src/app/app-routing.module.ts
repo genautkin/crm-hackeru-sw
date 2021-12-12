@@ -17,6 +17,10 @@ const routes: Routes = [
     {
       path: 'customers', // child route path
       component: ShowCustomersComponent, // child route component that the router renders
+    },
+    {
+      path: 'customers/:id', // child route path
+      component: CustomersComponent, // child route component that the router renders
     }]},
   {path: 'login', component: LoginComponent},
 ];

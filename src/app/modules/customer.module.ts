@@ -21,4 +21,11 @@ export class Customer {
     customerToObj () {
         return {id:this.id, firstName: this.firstName, lastName: this.lastName, email: this.email, phone:this.phone, address: this.address, notes: this.notes, status:this.status};
     }
+
+    prepareToForm () {
+        let obj:any = Object.assign({}, this);
+        delete obj['id'];
+        delete obj['status'];
+        return obj;
+    } 
 }

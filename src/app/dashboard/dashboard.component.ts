@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private loginService: AuthService) { }
+  constructor(private loginService: AuthService,private deviceService: DeviceDetectorService) { }
+  isMobile = this.deviceService.isMobile();
+  sidebarToggle = true;
 
   ngOnInit(): void {
     console.log(this.loginService.user)
