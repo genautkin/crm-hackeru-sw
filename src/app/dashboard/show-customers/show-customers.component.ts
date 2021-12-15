@@ -56,6 +56,10 @@ export class ShowCustomersComponent implements OnInit,OnDestroy {
     this.stopSnapshot()
   }
 
+  exampleFun(val: string) {
+    return val + ' !'
+  }
+
   
   searchChange(event: any) {
     this.customers =  this.helper.searchInCustomersArray(this.customersFromDb,event.target.value);

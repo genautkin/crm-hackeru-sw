@@ -21,6 +21,7 @@
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Email</th>
+            <th scope="col">Email Domain</th>
             <th scope="col">Address</th>
             <th scope="col">Phone</th>
             <th scope="col"></th>
@@ -31,7 +32,8 @@
             <th scope="row">{{i+1}}</th>
             <td>{{customer.firstName}}</td>
             <td>{{customer.lastName}}</td>
-            <td>{{customer.email}}</td>
+            <td>{{customer.email | myPipe:'f'}}</td>
+            <td>{{customer.email | myPipe:'l'}}</td>
             <td>{{customer.address}}</td>
             <td>{{customer.phone}}</td>
             <td><span class="badge pointer badge-primary mr-2" title="Edit" [routerLink]="'./'+customer.id"><i class="fas fa-edit"></i></span>

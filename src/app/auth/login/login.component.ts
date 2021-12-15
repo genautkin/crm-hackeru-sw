@@ -25,4 +25,15 @@ export class LoginComponent implements OnInit {
 
   }
 
+  logInWithProvider(name:string) {
+    switch (name) {
+      case 'google':
+        this.auth.GoogleAuth();
+        break;
+    
+      default:
+        break;
+    }
+  }
+
 }

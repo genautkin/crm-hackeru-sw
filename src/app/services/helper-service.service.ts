@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Customer } from '../modules/customer.module';
+import { User } from '../modules/user.module';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class HelperServiceService {
 
 saveCustomer(customerObj:any) {
   return this.afs.collection("customers").doc(customerObj.id).set(customerObj,{merge: true});
+}
+
+saveUser(uid:string,user:User) {
+  const _user:any = user.userToObj();
+  _user['uid'] = uid;
+  return this.afs.collection("users").doc(uid).set(_user,{merge: true});
 }
 
 createDocId() {
